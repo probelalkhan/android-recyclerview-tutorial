@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.layout_movie.view.*
 
 class MoviesAdapter(val movies : List<Movie>) : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
@@ -26,7 +27,11 @@ class MoviesAdapter(val movies : List<Movie>) : RecyclerView.Adapter<MoviesAdapt
         holder.view.textViewRating.text = movie.rating
         holder.view.textViewLikePercent.text = movie.likePercent.toString() + "%"
         holder.view.textViewVotesCount.text = movie.voteCount.toString() + " votes"
-        holder.view.textViewIsNew.visibility = if(movie.isNew) View.VISIBLE else View.INVISIBLE
+        holder.view.textViewIsNew.visibility = if(movie.isNew == 1) View.VISIBLE else View.INVISIBLE
+
+        Glide.with(holder.view.context)
+            .load(movie.image)
+            .into(holder.view.imageView)
     }
 
 

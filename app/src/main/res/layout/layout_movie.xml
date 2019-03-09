@@ -20,6 +20,7 @@
                     android:layout_height="195dp">
 
                 <ImageView
+                        android:id="@+id/imageView"
                         android:background="@drawable/captain_marvel"
                         android:layout_width="match_parent"
                         android:scaleType="matrix"
@@ -47,11 +48,13 @@
                         android:padding="4dp"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentLeft="true"
+                        android:textAlignment="center"
+                        android:gravity="center"
                         android:background="@drawable/textview_round_border_background"
                         android:textSize="10sp"
                         android:textColor="@android:color/white"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"/>
 
                 <RelativeLayout
                         android:paddingTop="3dp"
