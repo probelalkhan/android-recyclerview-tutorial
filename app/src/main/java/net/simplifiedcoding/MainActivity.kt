@@ -16,14 +16,25 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        refreshLayout.setOnRefreshListener {
+            fetchMovies()
+        }
+
+        fetchMovies()
+
+    }
+
+    private fun fetchMovies(){
+        refreshLayout.isRefreshing = true
 
         MoviesApi().getMovies().enqueue(object : Callback<List<Movie>> {
             override fun onFailure(call: Call<List<Movie>>, t: Throwable) {
+                refreshLayout.isRefreshing = false
                 Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
             }
 
             override fun onResponse(call: Call<List<Movie>>, response: Response<List<Movie>>) {
-
+                refreshLayout.isRefreshing = false
                 val movies = response.body()
 
                 movies?.let {
@@ -33,8 +44,6 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
-
-
     }
 
     private fun showMovies(movies: List<Movie>) {
